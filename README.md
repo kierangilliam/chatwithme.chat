@@ -1,38 +1,25 @@
-# create-svelte
+# chatwithme.chat
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+An open source, MIT licensed, ChatGPT UI.
 
-## Creating a project
+[https://chatwithme.chat](https://chatwithme.chat)
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Features
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+**No login** Bring your own API key.
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+**Private** Your chat history is only visible to you and OpenAI - no intermediaries.
 
-## Developing
+**Secure** Your API key is never sent to any server other than OpenAI. It is saved locally, not in the cloud.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+**Cost efficient** Cheaper than ChatGPT Pro as you only pay for what you use.
 
-```bash
-npm run dev
+## Security
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+All of your data is stored locally on your machine.
 
-## Building
+I do not have access to your API token or chat history.
 
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+You can verify this using two methods:
+1. Inspect your browser's network requests. You'll only see your API key being sent to OpenAI.
+2. Read the open source code in this repo.

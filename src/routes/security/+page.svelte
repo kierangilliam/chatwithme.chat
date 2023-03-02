@@ -7,8 +7,20 @@
 <div>
 	You can verify this using two methods:
 	<ol>
-		<li>Check network requests</li>
-		<li>Read the code</li>
+		<li>
+			Inspect your browser's network requests. You'll only see your API key
+			being sent to OpenAI.
+		</li>
+		<li>
+			Read the open source code in this
+			<a
+				href="https://github.com/kierangilliam/chatwithme.chat"
+				target="_blank"
+				rel="noreferrer"
+			>
+				repo
+			</a>.
+		</li>
 	</ol>
 </div>
 
