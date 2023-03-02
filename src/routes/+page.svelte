@@ -4,6 +4,7 @@
 	import { dev } from '$app/environment';
 	import { format_message_content } from '$lib/client/format_message';
 	import { tick } from 'svelte';
+	import TextArea from './TextArea.svelte';
 
 	// TODO: control+enter to submit
 
@@ -98,7 +99,7 @@
 		</section>
 
 		<section>
-			<h3>How does ChatWithMe this work?</h3>
+			<p>How does ChatWithMe this work?</p>
 
 			<ul>
 				<li>
@@ -125,6 +126,8 @@
 			</ul>
 
 			{#if chat_is_available}
+				<div class="s-4" />
+
 				<div>
 					<button on:click={() => ($state.intro_hidden = !$state.intro_hidden)}>
 						Hide welcome message
@@ -132,6 +135,8 @@
 				</div>
 			{/if}
 		</section>
+
+		<div class="s-4" />
 	{:else}
 		<button on:click={() => ($state.intro_hidden = !$state.intro_hidden)}>
 			Show welcome message
@@ -170,14 +175,14 @@
 					{/each}
 				</div>
 			{:else}
-				<div class="message">
+				<div class="message assistant">
 					<p>Welcome to ChatWithMe. Send a message below to get started.</p>
 				</div>
 			{/each}
 		</div>
 
-		<form on:submit|preventDefault={on_submit}>
-			<textarea bind:value={chat_box} autocomplete="off" />
+		<form class="chatbox" on:submit|preventDefault={on_submit}>
+			<TextArea bind:value={chat_box} on:submit={on_submit} />
 
 			<button type="submit" disabled={is_loading}>Submit</button>
 		</form>
@@ -188,17 +193,41 @@
 	:global(body) {
 		height: 100%;
 	}
+
 	:root {
-		--header-height: 44px;
+		--intro-background: #191b21;
+		--message-spacing: 16px;
+		--message-color: #27282e;
 	}
 
 	h1 {
 		font-size: 20px;
 	}
 
+	ul {
+		margin: 0;
+	}
+	li {
+		margin-bottom: 12px;
+	}
+
+	.s-4 {
+		width: 16px;
+		height: 16px;
+	}
+
+	button {
+		background: #5d61ed;
+		border: 0px;
+		padding: 8px 12px;
+		color: white;
+		font-weight: bold;
+	}
+
 	.intro {
 		padding: 12px;
-		background-color: whitesmoke;
+		background-color: var(--intro-background);
+		margin-bottom: var(--message-spacing);
 	}
 	.intro-hidden {
 		display: flex;
@@ -232,6 +261,10 @@
 		width: 100%;
 	}
 
+	.chatbox {
+		margin-top: var(--message-spacing);
+	}
+
 	section {
 		display: flex;
 		flex-direction: column;
@@ -239,17 +272,24 @@
 
 	.message {
 		padding: 8px 12px;
-	}
-	.message.user {
-		background-color: aliceblue;
+		background: var(--message-color);
+		border: 1px solid #2f3036;
+		border-radius: 2px;
 	}
 	.message.assistant {
-		background-color: antiquewhite;
+		border: 1px solid #2a447f;
 	}
 
 	.code {
-		font-family: monospace;
+		font-family: var(--font-mono);
 		background-color: lightcyan;
 		padding: 8px 12px;
+	}
+
+	@media (max-width: 400px) {
+		.intro {
+			flex-direction: column;
+			gap: 20px;
+		}
 	}
 </style>

@@ -1,4 +1,4 @@
-<h2>Security</h2>
+<h2>ChatWithMe - Security</h2>
 
 <p>All of your data is stored locally on your machine.</p>
 
@@ -25,3 +25,35 @@
 </div>
 
 <a href="/">go back to chat</a>
+
+<footer>
+	<p>
+		A project by <a
+			target="_blank"
+			rel="noreferrer"
+			href="https://twitter.com/kierangilliam"
+		>
+			Kieran Gill
+		</a>
+	</p>
+</footer>
+
+<style>
+	footer {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 4px;
+	}
+
+	footer a {
+		font-weight: bold;
+	}
+
+	@media (min-width: 480px) {
+		footer {
+			padding: 4px 0;
+		}
+	}
+</style>
