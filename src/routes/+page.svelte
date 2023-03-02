@@ -1,59 +1,78 @@
-<script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+<script lang="ts">
+	import { persistent } from '$lib/utils/svelte';
+	import { OpenAIAPI, type ChatWithMe } from '$lib/client/OpenAI';
+
+	const credentials = persistent<{ token: string | null }>(
+		'openai-credentials',
+		{ token: null }
+	);
+	const api = new OpenAIAPI();
+
+	let messages: ChatWithMe.API.Message[] = [];
+	let chat_box: string = '';
+	let is_loading = false;
+
+	$: api.update_api_token($credentials.token ?? '');
+
+	const on_submit = async () => {
+		const message: ChatWithMe.API.Message = {
+			content: chat_box.trim(),
+			role: 'user'
+		};
+
+		messages = [...messages, message];
+		is_loading = true;
+		chat_box = '';
+
+		const response = await api.completion([message]);
+
+		if (response.type == 'success') {
+			console.log(response.data);
+			// TODO: Present other messages to user
+			messages = [...messages, response.data.choices[0].message];
+		} else {
+			window.alert(`Error: ${response.kind}`);
+			console.error(response);
+		}
+
+		console.log(message);
+		is_loading = false;
+	};
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>ChatWithMe</title>
+	<meta name="description" content="ChatWithMe - Open source ChatGPT UI" />
 </svelte:head>
 
 <section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			</picture>
-		</span>
+	<input type="password" bind:value={$credentials.token} autocomplete="off" />
 
-		to your new<br />SvelteKit app
-	</h1>
+	{#each messages as message}
+		<p
+			class="message"
+			class:assistant={message.role === 'assistant'}
+			class:user={message.role === 'user'}
+		>
+			{message.content.trim()}
+		</p>
+	{/each}
 
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
+	<textarea bind:value={chat_box} disabled={is_loading} />
 
-	<Counter />
+	<button disabled={is_loading} on:click={on_submit}>Submit</button>
 </section>
 
 <style>
 	section {
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
 	}
 
-	h1 {
-		width: 100%;
+	.message.user {
+		background-color: aliceblue;
 	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
+	.message.assistant {
+		background-color: antiquewhite;
 	}
 </style>
