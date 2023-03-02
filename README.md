@@ -2,7 +2,7 @@
 
 An open source, MIT licensed, ChatGPT UI.
 
-[https://chatwithme.chat](https://chatwithme.chat)
+[chatwithme.chat](https://www.chatwithme.chat)
 
 ## Features
 
