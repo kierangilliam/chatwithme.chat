@@ -95,6 +95,17 @@
 					Secure: API tokens are not sent to anyone other than AI.
 					<a href="/security"> How you can verify this</a>.
 				</li>
+
+				<li>
+					Open source: See the code
+					<a
+						href="https://github.com/kierangilliam/chatwithme.chat"
+						target="_blank"
+						rel="noreferrer"
+					>
+						here
+					</a>.
+				</li>
 			</ul>
 		</section>
 
