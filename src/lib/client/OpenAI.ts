@@ -36,7 +36,8 @@ export namespace ChatWithMe {
 
 		export type CompletionResponse =
 			| { type: 'success'; data: Completion }
-			| { type: 'error'; kind: 'unknown' };
+			| { type: 'error'; code: 'invalid_api_key'; message: string }
+			| { type: 'error'; code: 'unknown'; message: string };
 	}
 }
 
@@ -73,11 +74,17 @@ export class OpenAIAPI {
 			body: JSON.stringify(input)
 		});
 
-		// TODO: Check response code
-		// TODO: Emit useful warning when api token is invalid
-
 		const json = await response.json();
 		const data = json as ChatWithMe.API.Completion;
+
+		if (response.status !== 200) {
+			return {
+				type: 'error',
+				code: (json as any)?.error?.code ?? 'unknown',
+				message:
+					(json as any)?.error?.message ?? 'An unknown error has occurred.'
+			};
+		}
 
 		return { type: 'success', data };
 	}
