@@ -6,8 +6,6 @@
 	import { tick } from 'svelte';
 	import TextArea from './TextArea.svelte';
 
-	// TODO: control+enter to submit
-
 	const state = persistent<{ intro_hidden: boolean; api_token: string | null }>(
 		'state',
 		{ api_token: null, intro_hidden: false }
@@ -135,17 +133,44 @@
 
 				<li>Paste the API key into the below input</li>
 			</ul>
-
-			{#if chat_is_available}
-				<div class="s-4" />
-
-				<div>
-					<button on:click={() => ($state.intro_hidden = !$state.intro_hidden)}>
-						Hide welcome message
-					</button>
-				</div>
-			{/if}
 		</section>
+
+		<section>
+			<p>Coming soon</p>
+
+			<ol>
+				<li>Multiple saved chat histories</li>
+				<li>
+					Browser extension: for quick access, content summarization, and more
+				</li>
+				<li>
+					The ability to configure chat personalities (concise and
+					informational, witty, friendly, etc)
+				</li>
+			</ol>
+
+			<p>
+				Get notified
+				<a
+					href="https://forms.gle/PehBv1Ax5H4CwLo47"
+					target="_blank"
+					rel="noreferrer"
+				>
+					here
+				</a>
+				when new features are ready.
+			</p>
+		</section>
+
+		{#if chat_is_available}
+			<div class="s-4" />
+
+			<div>
+				<button on:click={() => ($state.intro_hidden = !$state.intro_hidden)}>
+					Hide welcome message
+				</button>
+			</div>
+		{/if}
 
 		<div class="s-4" />
 	{:else}
@@ -215,7 +240,8 @@
 		font-size: 20px;
 	}
 
-	ul {
+	ul,
+	ol {
 		margin: 0;
 	}
 	li {
@@ -286,6 +312,7 @@
 		background: var(--message-color);
 		border: 1px solid #2f3036;
 		border-radius: 2px;
+		margin-bottom: 8px;
 	}
 	.message.assistant {
 		border: 1px solid #2a447f;
