@@ -1,17 +1,16 @@
 <script>
-	import Header from './Header.svelte';
 	import './styles.css';
 </script>
 
 <div class="app">
-	<Header />
-
 	<main>
 		<slot />
 	</main>
 
 	<footer>
-		A project by <a href="https://twitter.com/kierangilliam">Kieran Gill</a>
+		<p>
+			A project by <a href="https://twitter.com/kierangilliam">Kieran Gill</a>
+		</p>
 	</footer>
 </div>
 
@@ -38,7 +37,7 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding: 12px;
+		padding: 4px;
 	}
 
 	footer a {
@@ -47,7 +46,7 @@
 
 	@media (min-width: 480px) {
 		footer {
-			padding: 12px 0;
+			padding: 4px 0;
 		}
 	}
 </style>
