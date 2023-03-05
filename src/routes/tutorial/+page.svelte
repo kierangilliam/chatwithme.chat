@@ -104,13 +104,60 @@
 				when new features are ready.
 			</p>
 		</Message>
+
+		<Message role="user">
+			Is this website secure? What happens to my API token?
+		</Message>
+
+		<Message role="assistant">
+			<p>All of your data is stored locally on your machine.</p>
+
+			<p>
+				The website creator does not have access to your API token or chat
+				history.
+			</p>
+
+			<p>You can verify this using two methods:</p>
+
+			<ol>
+				<li>
+					Inspect your browser's network requests. You'll only see your API key
+					being sent to OpenAI.
+				</li>
+				<li>
+					Read the open source code in this
+					<a
+						href="https://github.com/kierangilliam/chatwithme.chat"
+						target="_blank"
+						rel="noreferrer"
+					>
+						repository</a
+					>.
+				</li>
+			</ol>
+		</Message>
+
+		<Message role="user">Who made this?</Message>
+
+		<Message role="assistant">
+			<p>
+				This project was created by <a
+					target="_blank"
+					rel="noreferrer"
+					href="https://twitter.com/kierangilliam"
+				>
+					Kieran Gill
+				</a>
+			</p>
+		</Message>
 	</svelte:fragment>
 
 	<svelte:fragment slot="input">
 		<ChatInput
 			bind:value={chat_input}
 			on:submit={on_set_api_token}
-			placeholder="API token"
+			placeholder="Your API token here and then click 'initialize'"
+			buttonText="initialize"
 		/>
 	</svelte:fragment>
 </ChatTemplate>
