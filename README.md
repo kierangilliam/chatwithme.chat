@@ -12,7 +12,7 @@ An open source, MIT licensed, ChatGPT UI.
 
 **Secure** Your API key is never sent to any server other than OpenAI. It is saved locally, not in the cloud.
 
-**Cost efficient** Cheaper than ChatGPT Pro as you only pay for what you use.
+**Cost effective** Cheaper than ChatGPT Pro as you only pay for what you use.
 
 ## Security
 
