@@ -43,5 +43,6 @@
 		border-radius: 2px;
 		font-size: 16px;
 		padding: 8px 6px;
+		width: 100%;
 	}
 </style>

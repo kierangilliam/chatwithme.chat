@@ -2,9 +2,8 @@
 	import { persistent } from '$lib/utils/svelte';
 	import { OpenAIAPI, type ChatWithMe } from '$lib/client/OpenAI';
 	import { dev } from '$app/environment';
-	import { format_message_content } from '$lib/client/format_message';
 	import { tick } from 'svelte';
-	import TextArea from './TextArea.svelte';
+	import Chat from '$lib/components/Chat/Chat.svelte';
 
 	const state = persistent<{ intro_hidden: boolean; api_token: string | null }>(
 		'state',
@@ -14,8 +13,9 @@
 	const api = new OpenAIAPI();
 
 	let messages: ChatWithMe.API.Message[] = [];
-	let chat_box: string = '';
-	let is_loading = false;
+
+	let chat_text: string = '';
+	let chat_is_loading = false;
 
 	$: api.update_api_token($state.api_token ?? '');
 	$: chat_is_available = ($state.api_token?.length ?? 0) > 5;
@@ -25,18 +25,18 @@
 	}
 
 	const on_submit = async () => {
-		if (is_loading) {
+		if (chat_is_loading) {
 			return;
 		}
 
 		const message: ChatWithMe.API.Message = {
-			content: chat_box.trim(),
+			content: chat_text.trim(),
 			role: 'user'
 		};
 
 		messages = [...messages, message];
-		is_loading = true;
-		chat_box = '';
+		chat_is_loading = true;
+		chat_text = '';
 
 		await tick();
 		window.scrollTo({ top: 1_000_000 });
@@ -59,7 +59,7 @@
 		await tick();
 		window.scrollTo({ top: 1_000_000 });
 
-		is_loading = false;
+		chat_is_loading = false;
 	};
 
 	const on_api_token_blur = () => {
@@ -194,35 +194,12 @@
 </div>
 
 {#if chat_is_available}
-	<section class="chat">
-		<div class="messages">
-			{#each messages as message}
-				<div
-					class="message"
-					class:assistant={message.role === 'assistant'}
-					class:user={message.role === 'user'}
-				>
-					{#each format_message_content(message.content) as block}
-						{#if block.type === 'code'}
-							<pre class="code">{block.content}</pre>
-						{:else}
-							<p>{block.content}</p>
-						{/if}
-					{/each}
-				</div>
-			{:else}
-				<div class="message assistant">
-					<p>Welcome to ChatWithMe. Send a message below to get started.</p>
-				</div>
-			{/each}
-		</div>
-
-		<form class="chatbox" on:submit|preventDefault={on_submit}>
-			<TextArea bind:value={chat_box} on:submit={on_submit} />
-
-			<button type="submit" disabled={is_loading}>Submit</button>
-		</form>
-	</section>
+	<Chat
+		{messages}
+		is_loading={chat_is_loading}
+		bind:chat_text
+		on:submit={on_submit}
+	/>
 {/if}
 
 <style>
@@ -232,6 +209,12 @@
 
 	:root {
 		--intro-background: #191b21;
+
+		/* LHS Panel */
+		--panel-background: rgba(32, 33, 35, var(--tw-bg-opacity));
+
+		/* Chat */
+		--code-block-font: var(--font-mono);
 		--message-spacing: 16px;
 		--message-color: #27282e;
 	}
@@ -277,51 +260,15 @@
 		max-width: 250px;
 	}
 
-	.chat {
-		width: 100%;
-		height: 100%;
-		flex: 1;
-	}
-
-	.messages {
-		flex: 1;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-end;
-		overflow-y: scroll;
-	}
-
 	form {
 		display: flex;
 		flex-direction: column;
 		width: 100%;
 	}
 
-	.chatbox {
-		margin-top: var(--message-spacing);
-	}
-
 	section {
 		display: flex;
 		flex-direction: column;
-	}
-
-	.message {
-		padding: 8px 12px;
-		background: var(--message-color);
-		border: 1px solid #2f3036;
-		border-radius: 2px;
-		margin-bottom: 8px;
-	}
-	.message.assistant {
-		border: 1px solid #2a447f;
-	}
-
-	.code {
-		font-family: var(--font-mono);
-		background-color: lightcyan;
-		padding: 8px 12px;
 	}
 
 	@media (max-width: 400px) {
