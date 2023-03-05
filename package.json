@@ -36,6 +36,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@total-typescript/ts-reset": "^0.3.7"
+		"@total-typescript/ts-reset": "^0.3.7",
+		"normalize.css": "^8.0.1",
+		"zod": "^3.20.6"
 	}
 }

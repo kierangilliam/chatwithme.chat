@@ -1,3 +1,5 @@
+<!-- TODO: Make this a chat tab -->
+
 <h2>ChatWithMe - Security</h2>
 
 <p>All of your data is stored locally on your machine.</p>
@@ -24,7 +26,7 @@
 	</ol>
 </div>
 
-<a href="/">go back to chat</a>
+<a href="/tutorial">go back to chat</a>
 
 <footer>
 	<p>

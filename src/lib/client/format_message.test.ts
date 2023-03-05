@@ -4,6 +4,7 @@ import { format_message_content } from './format_message';
 const code = (value: string) => {
 	return { type: 'code', content: value } as const;
 };
+
 const text = (value: string) => {
 	return { type: 'text', content: value } as const;
 };

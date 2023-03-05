@@ -1,4 +1,5 @@
 @import '@fontsource/fira-mono';
+@import 'normalize.css';
 
 :root {
 	--font-body: Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
@@ -9,82 +10,50 @@
 	--color-bg-2: hsl(224, 44%, 95%);
 	--color-theme-1: #ff3e00;
 	--color-theme-2: #4075a6;
-	--color-text: rgba(0, 0, 0, 0.7);
 	--column-width: 42rem;
 	--column-margin-top: 4rem;
 	font-family: var(--font-body);
-	color: var(--color-text);
+}
+
+:root {
+	--app-background: rgba(52, 53, 65, 1);
+	--app-text-color: white;
+
+	--intro-background: #191b21;
+
+	/* LHS Panel */
+	--panel-background: rgba(32, 33, 35, 1);
+
+	/* Messages */
+	--message-spacing: 16px;
+	--message-text-color: rgba(236, 236, 241, 1);
+	--message-link-color: rgba(236, 236, 241, 1);
+	--message-user-background: var(--app-background);
+	--message-assistant-background: rgba(68, 70, 84, 1);
+	--code-block-font: var(--font-mono);
+	--code-block-background: black;
+
+	/* Chat input */
+	--chat-input-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+	--chat-input-background: rgba(64, 65, 79, 1);
 }
 
 body {
-	min-height: 100vh;
-	margin: 0;
-	background-color: #24252d;
-	color: white;
+	background-color: var(--app-background);
+	color: var(--app-text-color);
 }
 
-h1,
-h2,
-p {
-	font-weight: 400;
-}
-
-p {
-	line-height: 1.5;
-}
-
-a {
-	color: #2e8eff;
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
-h1 {
-	font-size: 2rem;
-	text-align: center;
-}
-
-h2 {
-	font-size: 1rem;
-}
-
-pre {
-	font-size: 16px;
-	font-family: var(--font-mono);
-	background-color: rgba(255, 255, 255, 0.45);
-	border-radius: 3px;
-	box-shadow: 2px 2px 6px rgb(255 255 255 / 25%);
-	padding: 0.5em;
-	overflow-x: auto;
-	color: var(--color-text);
-}
-
-.text-column {
-	display: flex;
-	max-width: 48rem;
-	flex: 0.6;
-	flex-direction: column;
-	justify-content: center;
-	margin: 0 auto;
-}
-
-input,
 button {
-	font-size: inherit;
-	font-family: inherit;
+	background: #5d61ed;
+	border: 0px;
+	padding: 8px 12px;
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
 }
-
-button:focus:not(:focus-visible) {
-	outline: none;
-}
-
-@media (min-width: 720px) {
-	h1 {
-		font-size: 2.4rem;
-	}
+button[disabled] {
+	background: #a2a3d1;
+	cursor: not-allowed;
 }
 
 .visually-hidden {
@@ -97,4 +66,9 @@ button:focus:not(:focus-visible) {
 	position: absolute;
 	width: 1px;
 	white-space: nowrap;
+}
+
+.s-4 {
+	width: 16px;
+	height: 16px;
 }
