@@ -6,6 +6,7 @@
 	export let placeholder =
 		'Your message here. Tip: You can press control+enter or ⌘+enter to submit'
 	export let disabled: boolean = false
+	export let buttonText = 'send'
 
 	let text_area_handle: HTMLTextAreaElement
 
@@ -55,7 +56,7 @@
 		on:keyup={recalculate_height}
 	/>
 
-	<button {disabled} on:click|preventDefault={on_submit}>send</button>
+	<button {disabled} on:click|preventDefault={on_submit}>{buttonText}</button>
 </div>
 
 <style>
@@ -89,10 +90,11 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background: white;
-		color: black;
-		height: 12px;
-		padding: 4px 2px;
+		background: black;
+		color: white;
+		height: 24px;
+		padding: 8px 6px;
+		border-radius: 2px;
 		font-size: 14px;
 		margin-right: 8px;
 	}
