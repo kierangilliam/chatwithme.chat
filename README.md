@@ -23,3 +23,14 @@ I do not have access to your API token or chat history.
 You can verify this using two methods:
 1. Inspect your browser's network requests. You'll only see your API key being sent to OpenAI.
 2. Read the open source code in this repo.
+
+## Running locally
+
+ChatWithMe is built with [SvelteKit](https://kit.svelte.dev/).
+
+```
+git clone https://github.com/kierangilliam/chatwithme.chat
+cd chatwithme.chat
+npm install
+npm run dev
+```
