@@ -21,31 +21,48 @@
 
 		<Message role="assistant">
 			<ul>
-				<li>Easy: No login required.</li>
+				<li><strong>Easy</strong>: No login required.</li>
 
 				<li>
-					Cost efficient: Cheaper than ChatGPT Pro. Only pay for what you use.
+					<strong>Cost efficient</strong>: Cheaper than ChatGPT Pro. Only pay
+					for what you use. ChatGPT Pro is $20/month but the API only costs
+					$0.002/1k tokens.
+				</li>
+
+				<p>
+					<a
+						href="https://en.wikipedia.org/wiki/Natural_language_processing"
+						target="_blank"
+						rel="noreferrer">This</a
+					>
+					Wikipedia article is 6,250 words, or 10,240 tokens.
+					<em
+						>It would only cost $0.02 to send the entire article to ChatGPT
+						using the API.</em
+					> With ChatWithMe, you have access to almost all of the same features but
+					at a fraction of the price of ChatGPT Pro.
+				</p>
+
+				<li>
+					<strong>Private</strong>: Your chat history is only visible to you and
+					OpenAI - no intermediaries.
 				</li>
 
 				<li>
-					Private: Your chat history is only visible to you and OpenAI - no
-					intermediaries.
-				</li>
-
-				<li>
-					Secure: API tokens are not sent to anyone other than AI.
+					<strong>Secure</strong>: API tokens are not sent to anyone other than
+					AI.
 					<a href="/security"> How you can verify this</a>.
 				</li>
 
 				<li>
-					Open source: See the code
+					<strong>Open source</strong>: See the code
 					<a
 						href="https://github.com/kierangilliam/chatwithme.chat"
 						target="_blank"
 						rel="noreferrer"
 					>
-						here
-					</a>.
+						here</a
+					>.
 				</li>
 			</ul>
 		</Message>
