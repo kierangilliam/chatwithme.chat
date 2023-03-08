@@ -48,4 +48,16 @@
 			#353740 58.85%
 		);
 	}
+
+	@media only screen and (max-width: 640px) {
+		.chat-template {
+			/* Make room for the mobile navigation menu */
+			padding-top: 48px;
+		}
+
+		.messages {
+			/* Make room for the chat input */
+			height: 95vh;
+		}
+	}
 </style>

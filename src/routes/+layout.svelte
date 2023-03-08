@@ -76,11 +76,4 @@
 		flex: auto;
 		position: relative;
 	}
-
-	@media only screen and (max-width: 640px) {
-		.chat {
-			/* Make room for the mobile navigation menu */
-			padding-top: 48px;
-		}
-	}
 </style>
