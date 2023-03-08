@@ -38,6 +38,10 @@
 	--chat-input-background: rgba(64, 65, 79, 1);
 }
 
+* {
+	box-sizing: border-box;
+}
+
 body {
 	background-color: var(--app-background);
 	color: var(--app-text-color);

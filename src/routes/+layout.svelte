@@ -51,9 +51,7 @@
 </svelte:head>
 
 <div class="app">
-	<div class="panel">
-		<LHSPanel on:new-chat={on_new_chat} chats={$chats} />
-	</div>
+	<LHSPanel on:new-chat={on_new_chat} chats={$chats} />
 
 	<div class="chat">
 		<slot />
@@ -74,13 +72,15 @@
 		display: flex;
 	}
 
-	.panel {
-		background: var(--panel-background);
-		padding: 16px;
-		height: 100vh;
-	}
 	.chat {
 		flex: auto;
 		position: relative;
+	}
+
+	@media only screen and (max-width: 640px) {
+		.chat {
+			/* Make room for the mobile navigation menu */
+			padding-top: 48px;
+		}
 	}
 </style>

@@ -49,4 +49,9 @@
 		background: var(--code-block-background);
 		padding: 8px 12px;
 	}
+	@media only screen and (max-width: 640px) {
+		.message {
+			padding: 12px;
+		}
+	}
 </style>
