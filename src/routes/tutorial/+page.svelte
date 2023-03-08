@@ -49,9 +49,8 @@
 				</li>
 
 				<li>
-					<strong>Secure</strong>: API tokens are not sent to anyone other than
-					AI.
-					<a href="/security"> How you can verify this</a>.
+					<strong>Secure</strong>: Your API token is not sent to any party other
+					than OpenAI. It is stored on your machine, not in the cloud.
 				</li>
 
 				<li>
