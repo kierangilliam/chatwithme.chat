@@ -162,8 +162,19 @@
 					rel="noreferrer"
 					href="https://twitter.com/kierangilliam"
 				>
-					Kieran Gill
-				</a>
+					Kieran Gill</a
+				>.
+			</p>
+
+			<p>
+				Like this project?
+				<a
+					target="_blank"
+					rel="noreferrer"
+					href="https://www.buymeacoffee.com/kierangill"
+				>
+					Buy me a coffee</a
+				>.
 			</p>
 		</Message>
 	</svelte:fragment>

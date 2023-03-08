@@ -19,32 +19,47 @@
 </script>
 
 <div class="panel" class:open use:click_outside={() => (open = false)}>
-	<button class="mobile-close" on:click={() => (open = false)}>
-		Hide this panel
-	</button>
+	<div class="top">
+		<button class="mobile-close" on:click={() => (open = false)}>
+			Hide this panel
+		</button>
 
-	<button disabled={create_disabled} class="new" on:click={on_create_chat}>
-		New chat +
-	</button>
+		<button disabled={create_disabled} class="new" on:click={on_create_chat}>
+			New chat +
+		</button>
 
-	{#if create_disabled}
-		<p class="info">
-			Creating a new chat is disabled. Please follow the tutorial to set up
-			ChatWithMe.
-		</p>
-	{/if}
+		{#if create_disabled}
+			<p class="info">
+				Creating a new chat is disabled. Please follow the tutorial to set up
+				ChatWithMe.
+			</p>
+		{/if}
 
-	<div class="s-4" />
+		<div class="s-4" />
 
-	<div class="chat">
-		<a href="/tutorial">Tutorial & introduction</a>
+		<div class="chat">
+			<a href="/tutorial">Tutorial & introduction</a>
+		</div>
+
+		{#each chats as chat}
+			<div class="chat">
+				<a href="/{chat.id}">{chat.name}</a>
+			</div>
+		{/each}
 	</div>
 
-	{#each chats as chat}
-		<div class="chat">
-			<a href="/{chat.id}">{chat.name}</a>
-		</div>
-	{/each}
+	<div class="bottom">
+		<p>
+			Want to support this project?
+			<a
+				target="_blank"
+				rel="noreferrer"
+				href="https://www.buymeacoffee.com/kierangill"
+			>
+				Buy me a coffee</a
+			>
+		</p>
+	</div>
 </div>
 
 <div class="mobile-navigation">
@@ -65,6 +80,9 @@
 		display: none;
 	}
 	.panel {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 		height: 100%;
 		width: 300px;
 		background: var(--panel-background);
@@ -83,9 +101,14 @@
 	a {
 		color: var(--app-text-color);
 		text-decoration: none;
+		font-size: 1rem;
+		padding: 4px;
+		border-radius: 4px;
+		width: 100%;
 	}
 	a:hover {
 		text-decoration: underline;
+		background: var(--message-assistant-background);
 	}
 
 	.info {
@@ -95,6 +118,13 @@
 
 	button.new {
 		width: 100%;
+	}
+
+	.bottom * {
+		font-size: 0.7rem;
+	}
+	.bottom a {
+		text-decoration: underline;
 	}
 
 	@media only screen and (max-width: 640px) {
